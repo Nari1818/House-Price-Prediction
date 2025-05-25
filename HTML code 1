@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">RealEstatePortal</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+              
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Your Dream Home</h1>
+        <p>Explore the best properties in your area.</p>
+        <a href="admin.html" class="btn">Search Properties</a>
+    </section>
+
+    <!-- Featured Properties -->
+     <img src="C:\Users\Rites\OneDrive\Desktop\Real_Estate_Portal\house.jpg"> 
+    <section class="featured-properties">
+        <!-- <h2>Featured Properties</h2> -->
+        <div class="properties-grid" id="properties-grid">
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 RealEstatePortal. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">RealEstatePortal</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+              
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Your Dream Home</h1>
+        <p>Explore the best properties in your area.</p>
+        <a href="admin.html" class="btn">Search Properties</a>
+    </section>
+
+    <!-- Featured Properties -->
+     <img src="C:\Users\Rites\OneDrive\Desktop\Real_Estate_Portal\house.jpg"> 
+    <section class="featured-properties">
+        <!-- <h2>Featured Properties</h2> -->
+        <div class="properties-grid" id="properties-grid">
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 RealEstatePortal. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+</html>
