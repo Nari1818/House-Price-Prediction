@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Real Estate Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">RealEstatePro</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Admin Dashboard Section -->
+    <section class="admin-dashboard">
+        <h2>Admin Panel</h2>
+
+        <!-- Add Property Form -->
+        <div class="add-property-form">
+            <h3>Add New Property</h3>
+            <form id="add-property-form">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bedrooms">Bedrooms:</label>
+                    <input type="number" id="bedrooms" name="bedrooms" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Image (File name):</label>
+                    <input type="text" id="image" name="image" required>
+                </div>
+
+                <button type="submit" class="btn">Add Property</button>
+            </form>
+        </div>
+
+        <!-- Property List Section -->
+        <div class="property-list">
+            <h3>Existing Properties</h3>
+            <table id="property-list">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Location</th>
+                        <th>Price</th>
+                        <th>Bedrooms</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Properties will be dynamically injected here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 RealEstatePro. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
