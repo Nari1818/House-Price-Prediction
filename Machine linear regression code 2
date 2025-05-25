@@ -1,0 +1,126 @@
+/*document.addEventListener("DOMContentLoaded", () => {
+    const searchForm = document.getElementById("searchForm");
+    const propertyList = document.getElementById("property-list");
+
+    // Sample property data
+    const properties = [
+        { location: "New York", price: 500000, bedrooms: 3 },
+        { location: "Los Angeles", price: 700000, bedrooms: 4 },
+        { location: "Chicago", price: 300000, bedrooms: 2 },
+        { location: "Miami", price: 450000, bedrooms: 3 }
+    ];
+
+    searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const location = document.getElementById("location").value.toLowerCase();
+        const minPrice = parseInt(document.getElementById("minPrice").value) || 0;
+        const maxPrice = parseInt(document.getElementById("maxPrice").value) || Infinity;
+        const bedrooms = parseInt(document.getElementById("bedrooms").value) || 0;
+
+        const filteredProperties = properties.filter(property => 
+            property.location.toLowerCase().includes(location) &&
+            property.price >= minPrice &&
+            property.price <= maxPrice &&
+            property.bedrooms >= bedrooms
+        );
+
+        displayProperties(filteredProperties);
+    });
+
+    function displayProperties(properties) {
+        propertyList.innerHTML = "";
+        if (properties.length === 0) {
+            propertyList.innerHTML = "<p>No properties found.</p>";
+            return;
+        }
+
+        properties.forEach(property => {
+            const propertyCard = document.createElement("div");
+            propertyCard.classList.add("property-card");
+            propertyCard.innerHTML = `
+                <h3>Location: ${property.location}</h3>
+                <p>Price: $${property.price.toLocaleString()}</p>
+                <p>Bedrooms: ${property.bedrooms}</p>
+            `;
+            propertyList.appendChild(propertyCard);
+        });
+    }
+});*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("searchForm");
+    const propertyList = document.getElementById("property-list");
+
+    // Load saved search criteria (if any)
+    const savedSearch = JSON.parse(localStorage.getItem("searchCriteria")) || {};
+    document.getElementById("location").value = savedSearch.location || "";
+    document.getElementById("minPrice").value = savedSearch.minPrice || "";
+    document.getElementById("maxPrice").value = savedSearch.maxPrice || "";
+    document.getElementById("bedrooms").value = savedSearch.bedrooms || "";
+
+    // Load stored properties (from Admin panel)
+    const properties = JSON.parse(localStorage.getItem("properties")) || [];
+
+    // Handle search form submission
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const location = document.getElementById("location").value.toLowerCase();
+        const minPrice = parseInt(document.getElementById("minPrice").value) || 0;
+        const maxPrice = parseInt(document.getElementById("maxPrice").value) || Infinity;
+        const bedrooms = parseInt(document.getElementById("bedrooms").value) || 0;
+
+        // Save search criteria
+        const searchCriteria = { location, minPrice, maxPrice, bedrooms };
+        localStorage.setItem("searchCriteria", JSON.stringify(searchCriteria));
+
+        // Filter properties based on search criteria
+        const filteredProperties = properties.filter(property => {
+            return (
+                property.location.toLowerCase().includes(location) &&
+                property.price >= minPrice &&
+                property.price <= maxPrice &&
+                property.bedrooms >= bedrooms
+            );
+        });
+
+        displayProperties(filteredProperties);
+    });
+
+    // Function to display properties
+    function displayProperties(properties) {
+        propertyList.innerHTML = ""; // Clear existing list
+
+        if (properties.length === 0) {
+            propertyList.innerHTML = "<p>No properties found.</p>";
+            return;
+        }
+
+        properties.forEach(property => {
+            const propertyDiv = document.createElement("div");
+            propertyDiv.classList.add("property-card");
+            propertyDiv.innerHTML = `
+                <h3>${property.title}</h3>
+                <p><strong>Location:</strong> ${property.location}</p>
+                <p><strong>Price:</strong> $${property.price}</p>
+                <p><strong>Bedrooms:</strong> ${property.bedrooms}</p>
+                <img src="images/${property.image}" alt="${property.title}" class="property-img">
+            `;
+            propertyList.appendChild(propertyDiv);
+        });
+    }
+
+    // Load previous search results on page load
+    if (Object.keys(savedSearch).length > 0) {
+        const filteredProperties = properties.filter(property => {
+            return (
+                property.location.toLowerCase().includes(savedSearch.location.toLowerCase()) &&
+                property.price >= (savedSearch.minPrice || 0) &&
+                property.price <= (savedSearch.maxPrice || Infinity) &&
+                property.bedrooms >= (savedSearch.bedrooms || 0)
+            );
+        });
+
+        displayProperties(filteredProperties);
+    }
+});
