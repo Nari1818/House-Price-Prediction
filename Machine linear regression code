@@ -1,0 +1,167 @@
+/*document.addEventListener("DOMContentLoaded", function () {
+    const propertyForm = document.getElementById("add-property-form");
+    const propertyListTable = document.querySelector("#property-list tbody");
+
+    // Array to store properties
+    let properties = [];
+
+    // Function to render properties in the table
+    function renderProperties() {
+        propertyListTable.innerHTML = ""; // Clear previous data
+
+        properties.forEach((property, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${property.title}</td>
+                <td>${property.location}</td>
+                <td>$${property.price}</td>
+                <td>${property.bedrooms}</td>
+                <td>
+                    <button class="delete-btn" data-index="${index}">Delete</button>
+                </td>
+            `;
+
+            propertyListTable.appendChild(row);
+        });
+
+        // Add event listeners to delete buttons
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", deleteProperty);
+        });
+    }
+
+    // Function to add a property
+    propertyForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const title = document.getElementById("title").value;
+        const location = document.getElementById("location").value;
+        const price = document.getElementById("price").value;
+        const bedrooms = document.getElementById("bedrooms").value;
+        const image = document.getElementById("image").value;
+
+        if (!title || !location || !price || !bedrooms || !image) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        // Add property to the array
+        const newProperty = { title, location, price, bedrooms, image };
+        properties.push(newProperty);
+
+        // Render properties
+        renderProperties();
+
+        // Reset form fields
+        propertyForm.reset();
+    });
+
+    // Function to delete a property
+    function deleteProperty(event) {
+        const index = event.target.getAttribute("data-index");
+        properties.splice(index, 1); // Remove property from array
+        renderProperties(); // Re-render table
+    }
+});*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    const propertyForm = document.getElementById("add-property-form");
+    const propertyListTable = document.querySelector("#property-list tbody");
+    const exportBtn = document.createElement("button");
+
+    // Array to store properties
+    let properties = [];
+
+    // Create and insert export button
+    exportBtn.textContent = "Save as CSV";
+    exportBtn.classList.add("export-btn");
+    propertyForm.after(exportBtn); // Insert below the form
+
+    // Function to render properties in the table
+    function renderProperties() {
+        propertyListTable.innerHTML = ""; // Clear previous data
+
+        properties.forEach((property, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${property.title}</td>
+                <td>${property.location}</td>
+                <td>₹${property.price}</td>
+                <td>${property.bedrooms}</td>
+                <td>
+                    <button class="delete-btn" data-index="${index}">Delete</button>
+                </td>
+            `;
+
+            propertyListTable.appendChild(row);
+        });
+
+        // Add event listeners to delete buttons
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", deleteProperty);
+        });
+    }
+
+    // Function to add a property
+    propertyForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        const title = document.getElementById("title").value;
+        const location = document.getElementById("location").value;
+        const price = document.getElementById("price").value;
+        const bedrooms = document.getElementById("bedrooms").value;
+        const image = document.getElementById("image").value;
+
+        if (!title || !location || !price || !bedrooms || !image) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        // Add property to the array
+        const newProperty = { title, location, price, bedrooms, image };
+        properties.push(newProperty);
+
+        // Render properties
+        renderProperties();
+
+        // Reset form fields
+        propertyForm.reset();
+    });
+
+    // Function to delete a property
+    function deleteProperty(event) {
+        const index = event.target.getAttribute("data-index");
+        properties.splice(index, 1); // Remove property from array
+        renderProperties(); // Re-render table
+    }
+
+    // Function to export properties as CSV
+    function exportToCSV() {
+        if (properties.length === 0) {
+            alert("No properties to save.");
+            return;
+        }
+
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += "Title,Location,Price,Bedrooms,Image\n"; // CSV headers
+
+        properties.forEach(property => {
+            csvContent += ${property.title},${property.location},${property.price},${property.bedrooms},${property.image}\n;
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "properties.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Attach export function to button
+    exportBtn.addEventListener("click", exportToCSV);
+});
